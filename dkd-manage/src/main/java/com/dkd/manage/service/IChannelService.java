@@ -65,4 +65,6 @@ public interface IChannelService
      * @return 结果
      */
     public int batchInsertChannel(List<Channel> channelList);
+
+    int countChannelBySkuIds(Long[] skuIds);
 }

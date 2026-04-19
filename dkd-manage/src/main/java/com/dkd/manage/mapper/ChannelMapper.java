@@ -69,4 +69,5 @@ public interface ChannelMapper
     public int batchInsertChannel(List<Channel> channelList);
 
 
+    int countChannelBySkuIds(Long[] skuIds);
 }
