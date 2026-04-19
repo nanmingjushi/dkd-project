@@ -144,6 +144,8 @@ public class GlobalExceptionHandler
     {
         if(e.getMessage().contains("foreign")){
             return AjaxResult.error("有外键约束，不允许操作");
+        }else if(e.getMessage().contains("Duplicate")){
+            return AjaxResult.error("无法保存，名称已存在");
         }
         return AjaxResult.error("数据完整性异常，不允许操作");
     }
