@@ -58,4 +58,9 @@ public interface ITaskDetailsService
      * @return 结果
      */
     public int deleteTaskDetailsByDetailsId(Long detailsId);
+
+
+
+    //批量新增工单详情
+    public int batchInsertTaskDetails(List<TaskDetails> taskDetailsList);
 }
