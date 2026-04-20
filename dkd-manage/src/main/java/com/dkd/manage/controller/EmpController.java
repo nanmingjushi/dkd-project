@@ -121,4 +121,23 @@ public class EmpController extends BaseController {
         return success(empService.selectEmpList(empParam));
     }
 
+
+    //根据售货机获取运维人员列表
+    @PreAuthorize("@ss.hasPermi('manage:emp:list')")
+    @GetMapping("/operationList/{innerCode}")
+    public AjaxResult getOperationList(@PathVariable String innerCode) {
+
+        // 1.查询售货机信息
+        VendingMachine vm = vendingMachineService.selectVendingMachineByInnerCode(innerCode);
+        if (vm == null) {
+            return error();
+        }
+        // 2.根据区域id、角色编号、员工状态查询运维人员列表
+        Emp empParam = new Emp();
+        empParam.setRegionId(vm.getRegionId());// 设备所属区域
+        empParam.setStatus(DkdContants.EMP_STATUS_NORMAL);// 员工启用
+        empParam.setRoleCode(DkdContants.ROLE_CODE_OPERATOR);// 角色编码：运维员
+        return success(empService.selectEmpList(empParam));
+    }
+
 }
