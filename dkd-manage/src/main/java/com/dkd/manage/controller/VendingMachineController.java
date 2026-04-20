@@ -101,4 +101,8 @@ public class VendingMachineController extends BaseController
     {
         return toAjax(vendingMachineService.deleteVendingMachineByIds(ids));
     }
+
+
+
+
 }

@@ -162,4 +162,12 @@ public class VendingMachineServiceImpl implements IVendingMachineService
 
 
 
+    //根据设备编号查询设备信息
+    @Override
+    public VendingMachine selectVendingMachineByInnerCode(String innerCode) {
+
+        return vendingMachineMapper.selectVendingMachineByInnerCode(innerCode);
+    }
+
+
 }
