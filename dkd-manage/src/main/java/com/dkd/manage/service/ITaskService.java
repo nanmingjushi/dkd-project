@@ -72,4 +72,8 @@ public interface ITaskService
 
     //新增运营、运维工单
     public int insertTaskDto(TaskDto taskDto);
+
+
+    //取消工单
+    int cancelTask(Task task);
 }

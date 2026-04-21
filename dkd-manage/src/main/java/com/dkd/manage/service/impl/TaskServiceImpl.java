@@ -179,6 +179,23 @@ public class TaskServiceImpl implements ITaskService {
     }
 
 
+    //取消工单
+    @Override
+    public int cancelTask(Task task) {
+        Task taskDb = taskMapper.selectTaskByTaskId(task.getTaskId());
+        if (taskDb.getTaskStatus().equals(DkdContants.TASK_STATUS_CANCEL)) {
+            throw new ServiceException("工单已取消了，不能再次取消");
+        }
+        if (taskDb.getTaskStatus().equals(DkdContants.TASK_STATUS_FINISH)) {
+            throw new ServiceException("工单已完成了，不能取消");
+        }
+
+        task.setTaskStatus(DkdContants.TASK_STATUS_CANCEL);
+        task.setUpdateTime(DateUtils.getNowDate());
+
+        return taskMapper.updateTask(task);
+    }
+
 
     /**
      * 生成并获取当天任务代码的唯一标识。
